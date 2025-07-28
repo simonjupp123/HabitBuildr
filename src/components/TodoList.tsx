@@ -30,6 +30,7 @@ export default function TodoList() {
       setLoading(false);
     }
   };
+  
 
   // Create new todo
   const handleAddTodo = async (todoData: any) => {
@@ -137,7 +138,7 @@ export default function TodoList() {
     }
   });
 
-  // Load todos on component mount
+  // Load todos on component mount, once
   useEffect(() => {
     fetchTodos();
   }, []);

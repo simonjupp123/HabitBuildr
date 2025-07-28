@@ -25,7 +25,7 @@ const pool = new Pool({
 
 async function setupDatabase() {
   try {
-    console.log('🚀 Setting up HabitBuildr database...');
+    console.log('Setting up HabitBuildr database...');
     
     // Read the schema file
     const schemaPath = path.join(__dirname, '../src/lib/schema.sql');
@@ -34,21 +34,15 @@ async function setupDatabase() {
     // Execute the schema
     await pool.query(schema);
     
-    console.log('✅ Database schema created successfully!');
-    console.log('📊 Tables created:');
+    console.log('Database schema created successfully!');
+    console.log('Tables created:');
     console.log('   - todos (with indexes and triggers)');
     console.log('');
-    console.log('🎉 Your HabitBuildr database is ready!');
-    console.log('   You can now start the development server with: npm run dev');
+    console.log(' Your HabitBuildr database is ready!');
+    console.log(' You can now start the development server with: npm run dev');
     
   } catch (error) {
-    console.error('❌ Error setting up database:', error.message);
-    console.log('');
-    console.log('💡 Make sure:');
-    console.log('   1. PostgreSQL is running');
-    console.log('   2. Database "habitbuildr" exists');
-    console.log('   3. Your database credentials are correct');
-    console.log('   4. You have the necessary permissions');
+    console.error('Error setting up database:', error.message);
     process.exit(1);
   } finally {
     await pool.end();

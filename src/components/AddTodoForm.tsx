@@ -11,7 +11,7 @@ interface AddTodoFormProps {
 export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
+  const [priority, setPriority] = useState<'low' | 'medium' | 'high' | ''>('');
   const [dueDate, setDueDate] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,7 +24,7 @@ export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoForm
     const todoData: CreateTodoRequest = {
       title: title.trim(),
       description: description.trim() || undefined,
-      priority,
+      priority: priority || 'medium',
       due_date: dueDate || undefined,
     };
 
@@ -33,7 +33,7 @@ export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoForm
     // Reset form
     setTitle('');
     setDescription('');
-    setPriority('medium');
+    setPriority('');
     setDueDate('');
   };
 
@@ -46,29 +46,29 @@ export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoForm
           <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
             Title *
           </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="What needs to be done?"
-            required
-          />
+                      <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-900"
+              placeholder="What needs to be done?"
+              required
+            />
         </div>
 
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
             Description
           </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Add more details (optional)"
-            rows={3}
-          />
+                      <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-900"
+              placeholder="Add more details (optional)"
+              rows={3}
+            />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -80,8 +80,9 @@ export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoForm
               id="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
             >
+              <option value="" disabled className="text-gray-400">Select priority...</option>
               <option value="low">Low</option>
               <option value="medium">Medium</option>
               <option value="high">High</option>
@@ -97,7 +98,7 @@ export default function AddTodoForm({ onSubmit, isLoading = false }: AddTodoForm
               id="dueDate"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-900"
             />
           </div>
         </div>
